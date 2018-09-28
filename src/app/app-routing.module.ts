@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { EventsComponent } from './events/events.component';
 import { DoubleClickStreamComponent } from './double-click-stream/double-click-stream.component';
 import { WhyRxjsComponent } from './why-rxjs/why-rxjs.component';
+import { SuggestionBoxComponent } from './suggestion-box/suggestion-box.component';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'rxjs',
+    redirectTo: 'suggestion',
     pathMatch:'full'
   },
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'rxjs',
     component:WhyRxjsComponent
+  },
+  {
+    path:'suggestion',
+    component:SuggestionBoxComponent
   },
   {
     path: '**',
