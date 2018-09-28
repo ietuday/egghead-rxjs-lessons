@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent, interval, timer } from 'rxjs';
-import { throttle, buffer, map, filter, debounce, exhaustMap, take, takeUntil } from 'rxjs/operators';
+import { throttle, buffer, map, filter, debounce, exhaustMap, take, takeUntil, scan } from 'rxjs/operators';
 
 
 @Component({
@@ -55,16 +55,16 @@ export class DoubleClickStreamComponent implements OnInit {
       doubleClick$.debounce(1000).subscribe(() => {
         label.textContent = '-'
       })*/
-    
+
     var button = document.querySelector('.button');
     var label = document.querySelector('h4');
     const clicks = fromEvent(button, 'click');
     const doubleclicks$ = clicks.pipe(exhaustMap(() =>
-      clicks.pipe(take(1),takeUntil(interval(250)))
+      clicks.pipe(take(1), takeUntil(interval(250)))
     ));
 
     doubleclicks$.subscribe((val) => {
-      console.log(val);     
+      console.log(val);
       label.textContent = 'double clicked !'
     })
 
@@ -74,6 +74,19 @@ export class DoubleClickStreamComponent implements OnInit {
       console.log(val);
       label.textContent = '-'
     })
+
+    let clickStream = fromEvent(button, 'click');
+
+    clickStream
+      .pipe(scan((count) => count + 1, 0))
+      .subscribe((count) => {
+        if(count > 1)
+        label.textContent = 'multiple clicked !'
+        clickStream.pipe(debounce(() => timer(1000))).subscribe((val) => {
+          console.log(val);
+          label.textContent = '-'
+        })
+      })
   }
 
 }
