@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventsComponent } from './events/events.component';
 import { DoubleClickStreamComponent } from './double-click-stream/double-click-stream.component';
+import { WhyRxjsComponent } from './why-rxjs/why-rxjs.component';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'double',
+    redirectTo: 'rxjs',
     pathMatch:'full'
   },
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'double',
     component:DoubleClickStreamComponent
+  },
+  {
+    path:'rxjs',
+    component:WhyRxjsComponent
   },
   {
     path: '**',

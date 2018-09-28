@@ -56,6 +56,8 @@ export class DoubleClickStreamComponent implements OnInit {
         label.textContent = '-'
       })*/
 
+  // -----------------------Working Code----------------------------------
+
     var button = document.querySelector('.button');
     var label = document.querySelector('h4');
     const clicks = fromEvent(button, 'click');
@@ -78,9 +80,9 @@ export class DoubleClickStreamComponent implements OnInit {
     let clickStream = fromEvent(button, 'click');
 
     clickStream
-      .pipe(scan((count) => count + 1, 0))
+      // .pipe(scan((count) => count + 1, 0))
       .subscribe((count) => {
-        if(count > 1)
+        // if(count > 1)
         label.textContent = 'multiple clicked !'
         clickStream.pipe(debounce(() => timer(1000))).subscribe((val) => {
           console.log(val);

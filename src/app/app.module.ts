@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
 import { DoubleClickStreamComponent } from './double-click-stream/double-click-stream.component';
+import { WhyRxjsComponent } from './why-rxjs/why-rxjs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
-    DoubleClickStreamComponent
+    DoubleClickStreamComponent,
+    WhyRxjsComponent
   ],
   imports: [
     BrowserModule,
